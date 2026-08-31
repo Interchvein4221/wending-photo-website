@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#111111">
+    <title>{{ .Title }} — {{ .Date }}</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+
+<body>
+<header class="hero">
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+        <p class="hero-date">{{ .Date }}</p>
+        <h1>{{ .Couple }}</h1>
+        <p class="hero-subtitle">Наша свадебная история</p>
+
+        <button class="scroll-button" id="scrollButton" aria-label="Перейти к фотографиям">
+            <span>Смотреть фотографии</span>
+            <span class="arrow">↓</span>
+        </button>
+    </div>
+</header>
+
+<main id="gallery" class="gallery-section">
+    <div class="section-heading">
+        <p class="eyebrow">14 июля 2026</p>
+        <h2>Артур и Анастасия</h2>
+        <p>День, который хочется помнить всегда.</p>
+    </div>
+
+    <div class="gallery">
+        {{ range .Photos }}
+        <button
+            class="photo-card"
+            type="button"
+            data-index="{{ .Number }}"
+            data-src="/static/photos/{{ .File }}"
+            aria-label="Открыть фотографию {{ .Number }}"
+        >
+            <img
+                src="/static/photos/{{ .File }}"
+                alt="Артур и Анастасия — фотография {{ .Number }}"
+                loading="lazy"
+            >
+        </button>
+        {{ end }}
+    </div>
+</main>
+
+<footer class="footer">
+    <p>Артур & Анастасия</p>
+    <span>14.07.2026</span>
+</footer>
+
+<div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="lightbox-close" id="closeButton" aria-label="Закрыть">×</button>
+
+    <button class="lightbox-arrow lightbox-prev" id="prevButton" aria-label="Предыдущая фотография">
+        ‹
+    </button>
+
+    <div class="lightbox-content">
+        <img id="lightboxImage" src="" alt="">
+        <div class="photo-counter" id="photoCounter"></div>
+    </div>
+
+    <button class="lightbox-arrow lightbox-next" id="nextButton" aria-label="Следующая фотография">
+        ›
+    </button>
+</div>
+
+<script>
+    window.galleryPhotos = [
+        {{ range .Photos }}
+        {
+            src: "/static/photos/{{ .File }}",
+            alt: "Артур и Анастасия — фотография {{ .Number }}"
+        },
+        {{ end }}
+    ];
+</script>
+
+<script src="/static/js/gallery.js"></script>
+</body>
+</html>

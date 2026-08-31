@@ -1,0 +1,7 @@
+.DS_Store
+static/photos/
+gallery
+*.db
+*.sqlite
+*.sqlite3
+.env
