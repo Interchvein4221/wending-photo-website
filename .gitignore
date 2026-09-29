@@ -1,7 +1,38 @@
+
+# macOS
+
 .DS_Store
-static/photos/
+
+# Go binaries
+
+wedding-gallery
+
 gallery
+
+# Photos
+
+static/photos/
+
+# Local backups
+
+static/photos/large_backup/
+
+# Databases
+
 *.db
+
 *.sqlite
+
 *.sqlite3
+
+# Environment variables
+
 .env
+
+# IDE
+
+.idea/
+
+.vscode/
+
+static/music/

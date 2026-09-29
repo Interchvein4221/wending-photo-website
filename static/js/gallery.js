@@ -20,13 +20,13 @@ function openPhoto(index) {
     lightboxImage.alt = photos[currentIndex].alt;
     photoCounter.textContent = `${currentIndex + 1} / ${photos.length}`;
 
-    lightbox.classList.add("open");
+    lightbox.classList.add("active");
     lightbox.setAttribute("aria-hidden", "false");
     document.body.style.overflow = "hidden";
 }
 
 function closePhoto() {
-    lightbox.classList.remove("open");
+    lightbox.classList.remove("active");
     lightbox.setAttribute("aria-hidden", "true");
     document.body.style.overflow = "";
 }
@@ -58,7 +58,7 @@ lightbox.addEventListener("click", (event) => {
 });
 
 document.addEventListener("keydown", (event) => {
-    if (!lightbox.classList.contains("open")) return;
+    if (!lightbox.classList.contains("active")) return;
 
     if (event.key === "Escape") closePhoto();
     if (event.key === "ArrowRight") showNext();
@@ -86,4 +86,20 @@ scrollButton.addEventListener("click", () => {
     document.getElementById("gallery").scrollIntoView({
         behavior: "smooth"
     });
+});
+const musicButton = document.getElementById("musicButton");
+const weddingMusic = document.getElementById("weddingMusic");
+
+musicButton.addEventListener("click", () => {
+    if (weddingMusic.paused) {
+        weddingMusic.play();
+        musicButton.textContent = "Ⅱ Пауза";
+    } else {
+        weddingMusic.pause();
+        musicButton.textContent = "♫ Включить музыку";
+    }
+});
+
+weddingMusic.addEventListener("ended", () => {
+    musicButton.textContent = "♫ Включить музыку";
 });

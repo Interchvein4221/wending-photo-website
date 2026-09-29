@@ -16,7 +16,9 @@
         <p class="hero-date">{{ .Date }}</p>
         <h1>{{ .Couple }}</h1>
         <p class="hero-subtitle">Наша свадебная история</p>
-
+<button class="music-button" id="musicButton" type="button">
+    ♫ Включить музыку
+</button>
         <button class="scroll-button" id="scrollButton" aria-label="Перейти к фотографиям">
             <span>Смотреть фотографии</span>
             <span class="arrow">↓</span>
@@ -37,11 +39,11 @@
             class="photo-card"
             type="button"
             data-index="{{ .Number }}"
-            data-src="/static/photos/{{ .File }}"
+            data-src="/static/photos/large/{{ .File }}"
             aria-label="Открыть фотографию {{ .Number }}"
         >
             <img
-                src="/static/photos/{{ .File }}"
+                src="/static/photos/large/{{ .File }}"
                 alt="Артур и Анастасия — фотография {{ .Number }}"
                 loading="lazy"
             >
@@ -71,12 +73,14 @@
         ›
     </button>
 </div>
-
+<audio id="weddingMusic" preload="auto">
+    <source src="/static/music/wedding.mp3" type="audio/mpeg">
+</audio>
 <script>
     window.galleryPhotos = [
         {{ range .Photos }}
         {
-            src: "/static/photos/{{ .File }}",
+            src: "/static/photos/large/{{ .File }}",
             alt: "Артур и Анастасия — фотография {{ .Number }}"
         },
         {{ end }}
